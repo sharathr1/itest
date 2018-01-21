@@ -16,4 +16,6 @@ public interface IAppService {
 		System.out.println("Static Interface");
 	}
 
+	public List<Employee> postEmployees(List<Employee> empList);
+
 }
