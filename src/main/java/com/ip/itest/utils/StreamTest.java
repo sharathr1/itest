@@ -2,8 +2,10 @@ package com.ip.itest.utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -41,8 +43,8 @@ public class StreamTest {
 		System.out.println(Arrays.asList(strArray));
 
 		Map<String, String> intMap = li.stream().collect(Collectors.toMap(i -> i, i -> i + "add"));
-		//li.stream().sorted().collect(Collectors.toList());
-		//list.sort(Comparator.comparing(AnObject::getAttr));
+		// li.stream().sorted().collect(Collectors.toList());
+		// list.sort(Comparator.comparing(AnObject::getAttr));
 
 		System.out.println(intMap);
 
@@ -58,8 +60,21 @@ public class StreamTest {
 			return s;
 		}).forEach(e -> {
 		});
-		// Stream Contains 50 ??        .allMatch(i -> i<10))  .noneMatch()  .anyMatch() .count()
-		System.out.println("Stream Contains 50 ?? : "+ss.stream().noneMatch(i -> i == 50));
+		// Stream Contains 50 ?? .allMatch(i -> i<10)) .noneMatch() .anyMatch()
+		// .count()
+		System.out.println("Stream Contains 50 ?? : " + ss.stream().noneMatch(i -> i == 50));
 		System.out.println(result);
+
+		Random random = new Random();
+		random.ints().limit(1).forEach(System.out::println);
+
+		List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
+
+		IntSummaryStatistics stats = numbers.stream().mapToInt((x) -> x).summaryStatistics();
+		
+		System.out.println("Highest number in List : " + stats.getMax());
+		System.out.println("Lowest number in List : " + stats.getMin());
+		System.out.println("Sum of all numbers : " + stats.getSum());
+		System.out.println("Average of all numbers : " + stats.getAverage());
 	}
 }
