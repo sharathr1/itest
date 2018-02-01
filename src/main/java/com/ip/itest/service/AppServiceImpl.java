@@ -22,7 +22,7 @@ public class AppServiceImpl implements IAppService {
 		// Employee e = new Employee();
 		// e.setE_id("1");
 		// eList.add(e);
-		System.out.println(empRepo.findAll());
+		System.out.println("DB "+empRepo.findAll());
 		return (List<Employee>) empRepo.findAll();
 	}
 
