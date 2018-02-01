@@ -31,15 +31,42 @@ public class AppController {
 
 	@Autowired
 	private IAppService appService;
-	@GetMapping("/test")
-	public List<Employee> getAllEmployees(){
+
+	@GetMapping("/employee")
+	public List<Employee> getAllEmployees() {
 		return appService.getAllEmloyee();
 	}
-	@PostMapping("/emp")
-	public List<Employee> postEmployees(@RequestBody List<Employee> empList){
+	@PostMapping("/employee")
+	public List<Employee> postEmployees(@RequestBody List<Employee> empList) {
 		return appService.postEmployees(empList);
 	}
-	
+	@GetMapping("/hashcodeandequals")
+	public Employee getAllEmployees1() {
+		Employee e = new Employee();
+		e.setEId("2");
+		Employee e1 = new Employee();
+		e1.setEId("2");
+		
+		System.out.println(e.hashCode());
+		System.out.println(e1.hashCode());
+
+		if (e == e1) {
+			System.err.println("==");
+		}
+		Employee e2 = e;
+		if (e2 == e) {
+			System.err.println("clone ==");
+		}
+
+		if (e.equals(e1)) {
+			System.err.println("equals()");
+		}
+
+		return Employee.builder().eId("1").eName("Sharath").build();
+	}
+
+
+
 	@GetMapping("/test/dev")
 	@ApiOperation(value = "Future Production KPI Details", notes = "")
 	@ResponseBody
