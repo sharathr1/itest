@@ -16,7 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableSwagger2
 @SpringBootApplication
-@ComponentScan(basePackages = "com.ip.itest.*")
+@ComponentScan(basePackages = "com.*")
 //@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class})
 @EnableCaching
 public class ItestApplication {

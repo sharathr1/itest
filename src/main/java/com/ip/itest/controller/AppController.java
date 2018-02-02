@@ -11,6 +11,8 @@ import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -29,6 +31,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 public class AppController {
+	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private IAppService appService;
@@ -48,6 +51,11 @@ public class AppController {
 	@Cacheable(value = "employee")
 	@GetMapping("/employee")
 	public List<Employee> getAllEmployees(@RequestParam String id, @RequestParam String name) {
+		 LOGGER.debug("This is a debug message");
+		    LOGGER.info("This is an info message");
+		    LOGGER.warn("This is a warn message");
+		    LOGGER.error("This is an error message");
+		 
 		return appService.getAllEmloyee();
 	}
 
