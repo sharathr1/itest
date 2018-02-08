@@ -76,6 +76,7 @@ public class AppController {
 	 * 
 	 * @return
 	 */
+	
 	@GetMapping("/hashcodeandequals")
 	public Employee getAllEmployees1() {
 		Employee e1 = new Employee();

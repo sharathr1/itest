@@ -16,3 +16,4 @@ Go to Eclipse --> About Eclipse --> check 'Lombok v1.16.18 "Dancing Elephant" is
 That's it. It worked. I did not change eclipse init script
 
  git push --set-upstream origin master
+ https://github.com/couchbaselabs/try-cb-java.git
