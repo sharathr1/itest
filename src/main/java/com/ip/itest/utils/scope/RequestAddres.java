@@ -1,8 +1,8 @@
 package com.ip.itest.utils.scope;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
-import org.springframework.context.annotation.*;
 
 @Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Component

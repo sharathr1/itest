@@ -3,15 +3,13 @@ package com.ip.itest.common.domain;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 /**
  * https://dzone.com/articles/reduce-boilerplate-code-your
  * @author 999951

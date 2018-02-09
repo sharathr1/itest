@@ -1,6 +1,5 @@
 package com.ip.itest.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.ip.itest.common.domain.Employee;
 import com.ip.itest.dal.EmployeeRepo;
-import com.ip.itest.*;
 
 @Service
 public class AppServiceImpl implements IAppService {

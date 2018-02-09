@@ -1,5 +1,10 @@
 package com.ip.itest.utils;
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.time.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.IntSummaryStatistics;
@@ -7,10 +12,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class StreamTest {
 	public static void main(String[] args) {
+		LocalDate date1 = LocalDate.now();
+		LocalDate date2 = date1.plus(1, ChronoUnit.MONTHS);
+		Period period = Period.between(date2, date1);
+		System.out.println("Period: " + period);
+
+		ZoneId zoneId = ZoneId.of("Asia/Singapore");
+		ZonedDateTime.of(LocalDateTime.now(), zoneId);
+//			System.out.println(ZonedDateTime.getOffset());
+
+		DateTimeFormatter dateFormat = DateTimeFormatter.ISO_DATE;
+		LocalDate dateOfBirth = LocalDate.of(2015, Month.FEBRUARY, 31);
+		System.out.println(dateFormat.format(dateOfBirth));
+
 		String[] a = { "abbc", "dbbdd" };
 		String[] b = { "abbc", "ddbab" };
 		String[] intArray = { "1", "2" };
@@ -71,7 +88,7 @@ public class StreamTest {
 		List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
 
 		IntSummaryStatistics stats = numbers.stream().mapToInt((x) -> x).summaryStatistics();
-		
+
 		System.out.println("Highest number in List : " + stats.getMax());
 		System.out.println("Lowest number in List : " + stats.getMin());
 		System.out.println("Sum of all numbers : " + stats.getSum());
