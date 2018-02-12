@@ -1,4 +1,10 @@
-package com.ip.itest.utils.scope;
+/**
+ * Copyright (C) General Electric Company 2018 . All Rights Reserved.
+ * 
+ * @author 999951
+ *
+ */
+package com.ip.itest.pattern.scope;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
