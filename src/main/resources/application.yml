@@ -13,6 +13,9 @@ debug: false
 #    enabled: false
 #    
 
+
+
+
 management: 
   security: 
      roles: SUPERUSER
@@ -180,5 +183,4 @@ security:
 # SECURITY OAUTH2 RESOURCES (ResourceServerProperties)     
     resource:            
       userInfoUri: ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.uaaUrl}/userinfo            
-      prefer-token-info: true      
-      
+      prefer-token-info: true
