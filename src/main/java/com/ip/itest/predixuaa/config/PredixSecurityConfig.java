@@ -13,6 +13,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -77,7 +78,21 @@ public class PredixSecurityConfig extends WebSecurityConfigurerAdapter {
 					.and()
 				.csrf()
 					.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+	   // http.csrf().disable();
+
 		// @formatter:on
 	}
+	
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources", "/configuration/security",
+				"/swagger-ui.html", "/swagger-resources/**","/webjars/**");
+	}
+	
+
+//	@Override
+//	protected void configure(HttpSecurity http) throws Exception {
+//		http.csrf().disable();
+//	}
 
 }

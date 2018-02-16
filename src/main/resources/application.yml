@@ -1,186 +1,187 @@
-## ===================================================================
-## APPLICATION PROPERTIES
-##
-## List of Common Application Properties: 
-##   - http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
-## 
-## ===================================================================
-## EMBEDDED SERVER CONFIGURATION
-## *** REVIEW https://www.predix.io/support/article/KB0011758 for server config settings
-#debug: false
-##management:
-##  security: 
-##    enabled: false
-##    
+# ===================================================================
+# APPLICATION PROPERTIES
 #
-#
-#
-#
-#management: 
+# List of Common Application Properties: 
+#   - http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# 
+# ===================================================================
+# EMBEDDED SERVER CONFIGURATION
+# *** REVIEW https://www.predix.io/support/article/KB0011758 for server config settings
+debug: false
+#management:
 #  security: 
-#     roles: SUPERUSER
-#
-#server:
-#  port: 9090
-#  use-forward-headers: true
-#  tomcat:
-#    remote-ip-header: x-forwarded-for
-#    protocol-header: x-forwarded-proto    
-#    protocol-header-https-value: http   
-#  session:
-#    cookie:
-#      http-only: true # only allows http requests not JavaScript
-#      secure: true # only sends via https   
-#      
-## COMMON SPRING CONFIGURATION  
-#spring:  
-#  profiles:
-#    # Comma-separated list of active profiles.
-#    active: predix,local
-##    active: ge-oidc,local
-#    #active: ge-oidc
-#  resources:
-#    chain:
-#      enabled: true  # Enable the Spring Resource Handling chain. Disabled by default unless at least one strategy has been enabled.
-#  main:
-#    banner-mode: "off"  # Mode used to display the banner when the application runs.
-#  datasource:
-#    username: sa
-#    password:
-#    driver-class-name: org.h2.Driver
-#  h2:
-#    console:
-#      path: /h2
-#      enabled: true
+#    enabled: false
 #    
-## LOGGING
-#logging:  
-#  level:
-#    org.springframework.security: debug
-#    
-## SECURITY (SecurityProperties)
-#security:
-#  ignored: /favicon.ico, /lib/**, /js/**, /resources/**
-#  basic:
-#    enabled: false  # Enable basic authentication.
-#  headers:
-#    cache: true  # Enable cache control HTTP headers.
-#    frame: true  # Enable "X-Frame-Options" header.
-#    xss: true    # Enable cross site scripting (XSS) protection.
-#  filter-order: 1  # Security filter chain order.
-#   
-#  user: 
-#      name: admin
-#      password: admin
+
+
+
+
+management: 
+  security: 
+     roles: SUPERUSER
+
+server:
+  port: 9090
+  use-forward-headers: true
+  tomcat:
+    remote-ip-header: x-forwarded-for
+    protocol-header: x-forwarded-proto    
+    protocol-header-https-value: http   
+  session:
+    cookie:
+      http-only: true # only allows http requests not JavaScript
+      secure: true # only sends via https   
+      
+# COMMON SPRING CONFIGURATION  
+spring:  
+  profiles:
+    # Comma-separated list of active profiles.
+    active: predix,local
+#    active: ge-oidc,local
+    #active: ge-oidc
+  resources:
+    chain:
+      enabled: true  # Enable the Spring Resource Handling chain. Disabled by default unless at least one strategy has been enabled.
+  main:
+    banner-mode: "off"  # Mode used to display the banner when the application runs.
+  datasource:
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      path: /h2
+      enabled: true
+    
+# LOGGING
+logging:  
+  level:
+    org.springframework.security: debug
+    
+# SECURITY (SecurityProperties)
+security:
+  ignored: /favicon.ico, /lib/**, /js/**, /resources/**
+  basic:
+    enabled: false  # Enable basic authentication.
+  headers:
+    cache: true  # Enable cache control HTTP headers.
+    frame: true  # Enable "X-Frame-Options" header.
+    xss: true    # Enable cross site scripting (XSS) protection.
+  filter-order: 1  # Security filter chain order.
+   
+  user: 
+      name: admin
+      password: admin
+
+---
+
+spring:
+  profiles: local
+
+debug: true
+  
+server:
+  session:
+    cookie:
+      secure: false   
+
+logging:  
+  level:
+    org.springframework.security: info      
+
+# Simulate vcap.services environment variables
+# Replace 
+vcap:
+  services:
+      predix-shared-uaa-spring-boot-web-cups: # REPLACE WITH THE BOUND USER PROVIDED SERVICE
+        credentials:
+          oidcClientId: oidc_test_client
+          oidcClientSecret: VRyV0TebTfURUa9jSnb3L5VGjsvjZ21Jx5D5pXcf184QdusnjwARzbF2o9nbNvAp
+          oidcScope: api,profile,openid
+          oidcUrl: https://fssfed.ge.com/fss
+          uaaClientId: healthcare_localscheduling_dev
+          uaaClientSecret: vmtPSLRdkQGMq0Oq
+          uaaScope: uaa.resource,openid
+          uaaUrl: https://a8a2ffc4-b04e-4ec1-bfed-7a51dd408725.predix-uaa.run.aws-usw02-pr.ice.predix.io
+          ssoLogoutUrl: https://affiliateservices.gecompany.com/logoff/logoff.jsp 
+        
+ge:
+  network:
+    proxy-host: proxy-src.research.ge.com
+  #    proxy-host: proxy-src.research.ge.com
+    proxy-port: 8080
+    
+security:  
+  oauth2:               
+    client:
+      pre-established-redirect-uri: http://localhost:9090/login                    
+      registered-redirect-uri: http://localhost:9090/login
+
+   
+---    
+# ----------------------------------------------------------------------------------
+# GE OIDC (Pingfederate) profile configuration
 #
-#---
+# Using Production OIDC Environment created using the self-service 
+#    tool https://oidcapi.corporate.ge.com/
+# Replace the clientId, and clientSecret with your application specific values
+# Redirect URI is only needed if it doesn't include /login
+# ----------------------------------------------------------------------------------
+spring:
+  profiles: ge-oidc  
+      
+# SECURITY OAUTH2 CLIENT (OAuth2ClientProperties)         
+security:  
+  oauth2:               
+    client:
+      clientId: ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.oidcClientId}
+      clientSecret: ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.oidcClientSecret} 
+      accessTokenUri: ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.oidcUrl}/as/token.oauth2
+      userAuthorizationUri: ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.oidcUrl}/as/authorization.oauth2       
+      scope: ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.oidcScope}
+      pre-established-redirect-uri: https://springbootsecuredwebexample.run.aws-usw02-pr.ice.predix.io/login
+      registered-redirect-uri: https://springbootsecuredwebexample.run.aws-usw02-pr.ice.predix.io/login        
+      use-current-uri: false
+                        
+      
+# SECURITY OAUTH2 RESOURCES (ResourceServerProperties)            
+    resource:
+      userInfoUri: ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.oidcUrl}/idp/userinfo.openid
+      prefer-token-info: true    
+                
+---
+
+# ----------------------------------------------------------------------------------
+# Predix Basic Shared UAA configuration
 #
-#spring:
-#  profiles: local
-#
-#debug: true
-#  
-#server:
-#  session:
-#    cookie:
-#      secure: false   
-#
-#logging:  
-#  level:
-#    org.springframework.security: info      
-#
-## Simulate vcap.services environment variables
-## Replace 
-#vcap:
-#  services:
-#      predix-shared-uaa-spring-boot-web-cups: # REPLACE WITH THE BOUND USER PROVIDED SERVICE
-#        credentials:
-#          oidcClientId: oidc_test_client
-#          oidcClientSecret: VRyV0TebTfURUa9jSnb3L5VGjsvjZ21Jx5D5pXcf184QdusnjwARzbF2o9nbNvAp
-#          oidcScope: api,profile,openid
-#          oidcUrl: https://fssfed.ge.com/fss
-#          uaaClientId: healthcare_localscheduling_dev
-#          uaaClientSecret: vmtPSLRdkQGMq0Oq
-#          uaaScope: uaa.resource,openid
-#          uaaUrl: https://a8a2ffc4-b04e-4ec1-bfed-7a51dd408725.predix-uaa.run.aws-usw02-pr.ice.predix.io
-#          ssoLogoutUrl: https://affiliateservices.gecompany.com/logoff/logoff.jsp 
-#        
-#ge:
-#  network:
-#    proxy-host: proxy-src.research.ge.com
-#    proxy-port: 8080
-#    
-#security:  
-#  oauth2:               
-#    client:
-#      pre-established-redirect-uri: http://localhost:9090/login                    
-#      registered-redirect-uri: http://localhost:9090/login
-#
-#   
-#---    
-## ----------------------------------------------------------------------------------
-## GE OIDC (Pingfederate) profile configuration
-##
-## Using Production OIDC Environment created using the self-service 
-##    tool https://oidcapi.corporate.ge.com/
-## Replace the clientId, and clientSecret with your application specific values
-## Redirect URI is only needed if it doesn't include /login
-## ----------------------------------------------------------------------------------
-#spring:
-#  profiles: ge-oidc  
-#      
-## SECURITY OAUTH2 CLIENT (OAuth2ClientProperties)         
-#security:  
-#  oauth2:               
-#    client:
-#      clientId: ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.oidcClientId}
-#      clientSecret: ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.oidcClientSecret} 
-#      accessTokenUri: ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.oidcUrl}/as/token.oauth2
-#      userAuthorizationUri: ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.oidcUrl}/as/authorization.oauth2       
-#      scope: ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.oidcScope}
-#      pre-established-redirect-uri: https://springbootsecuredwebexample.run.aws-usw02-pr.ice.predix.io/login
-#      registered-redirect-uri: https://springbootsecuredwebexample.run.aws-usw02-pr.ice.predix.io/login        
-#      use-current-uri: false
-#                        
-#      
-## SECURITY OAUTH2 RESOURCES (ResourceServerProperties)            
-#    resource:
-#      userInfoUri: ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.oidcUrl}/idp/userinfo.openid
-#      prefer-token-info: true    
-#                
-#---
-#
-## ----------------------------------------------------------------------------------
-## Predix Basic Shared UAA configuration
-##
-## Using Predix Basic Shared UAA created using the self-service 
-##   tool https://shared-uaa.run.aws-usw02-pr.ice.predix.io
-## Replace the clientId and clientSecret with your application specific values
-## pre-established-redirect-uri is only needed if you don't have /login in your redirect-uri
-## ----------------------------------------------------------------------------------
-#spring:
-#  profiles: predix 
-#  resources:
-#    chain:
-#      enabled: true
-#
-## SECURITY OAUTH2 CLIENT (OAuth2ClientProperties)     
-#security:
-#  oauth2:
-#    client:
-#      client-id:  ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.uaaClientId}  
-#      client-secret: ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.uaaClientSecret}
-#      scope: ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.uaaScope}
-#      access-token-uri:  ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.uaaUrl}/oauth/token 
-#      user-authorization-uri:  ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.uaaUrl}/oauth/authorize
-#      #pre-established-redirect-uri: https://springbootsecuredwebexample.run.aws-usw02-pr.ice.predix.io/login
-#      #registered-redirect-uri: https://springbootsecuredwebexample.run.aws-usw02-pr.ice.predix.io/login
-#      pre-established-redirect-uri: https://springbootsecuredwebexample.getransportation.com/login
-#      registered-redirect-uri: https://springbootsecuredwebexample.getransportation.com/login        
-#      use-current-uri: false      
-#      
-#      
-## SECURITY OAUTH2 RESOURCES (ResourceServerProperties)     
-#    resource:            
-#      userInfoUri: ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.uaaUrl}/userinfo            
-#      prefer-token-info: true
+# Using Predix Basic Shared UAA created using the self-service 
+#   tool https://shared-uaa.run.aws-usw02-pr.ice.predix.io
+# Replace the clientId and clientSecret with your application specific values
+# pre-established-redirect-uri is only needed if you don't have /login in your redirect-uri
+# ----------------------------------------------------------------------------------
+spring:
+  profiles: predix 
+  resources:
+    chain:
+      enabled: true
+
+# SECURITY OAUTH2 CLIENT (OAuth2ClientProperties)     
+security:
+  oauth2:
+    client:
+      client-id:  ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.uaaClientId}  
+      client-secret: ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.uaaClientSecret}
+      scope: ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.uaaScope}
+      access-token-uri:  ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.uaaUrl}/oauth/token 
+      user-authorization-uri:  ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.uaaUrl}/oauth/authorize
+      #pre-established-redirect-uri: https://springbootsecuredwebexample.run.aws-usw02-pr.ice.predix.io/login
+      #registered-redirect-uri: https://springbootsecuredwebexample.run.aws-usw02-pr.ice.predix.io/login
+      pre-established-redirect-uri: https://springbootsecuredwebexample.getransportation.com/login
+      registered-redirect-uri: https://springbootsecuredwebexample.getransportation.com/login        
+      use-current-uri: false      
+      
+      
+# SECURITY OAUTH2 RESOURCES (ResourceServerProperties)     
+    resource:            
+      userInfoUri: ${vcap.services.predix-shared-uaa-spring-boot-web-cups.credentials.uaaUrl}/userinfo            
+      prefer-token-info: true

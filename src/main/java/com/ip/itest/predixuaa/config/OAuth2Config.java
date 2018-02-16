@@ -15,6 +15,7 @@ public class OAuth2Config {
 	@Bean
 	@ConfigurationProperties("security.oauth2.client")
 	public ClientCredentialsResourceDetails oauth2ClientCredentialsResourceDetails() { 
+		System.out.println("oauth2ClientCredentialsResourceDetails");
 		ClientCredentialsResourceDetails details = new ClientCredentialsResourceDetails();
 
 		return details;
@@ -22,12 +23,16 @@ public class OAuth2Config {
 
 	@Bean
 	public OAuth2ClientContext oauth2ClientContext() {
+		System.out.println("oauth2ClientContext");
+
 		return new DefaultOAuth2ClientContext(new DefaultAccessTokenRequest());
 	}
 
 	@Bean
 	public OAuth2RestTemplate clientCredentialsRestTemplate(OAuth2ClientContext oauth2ClientContext,
 			ClientCredentialsResourceDetails details) {
+		System.out.println("clientCredentialsRestTemplate");
+
 		OAuth2RestTemplate template = new OAuth2RestTemplate(details, oauth2ClientContext);
 		return template;
 	}
