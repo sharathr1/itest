@@ -12,6 +12,7 @@ public class Block implements Group {
 	private String name;
 	private double price;
 
+	
 	public void assemble() {
 		System.out.println("Block_ID "+this.getId());
 	}
@@ -26,5 +27,10 @@ public class Block implements Group {
 	@Override
 	public void checkForLeaf() {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public String toString() {
+		return "Block [id=" + id + ", name=" + name + ", price=" + price + "]";
 	}
 }

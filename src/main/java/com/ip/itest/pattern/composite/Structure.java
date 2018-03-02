@@ -53,8 +53,12 @@ public class Structure implements Group {
 			System.err.println("Has Leaf ahead");
 		}else{
 			System.err.println("END");
-
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "Structure [sumnodes=" + sumnodes + ", groups=" + groups + "]";
 	}
 
 }

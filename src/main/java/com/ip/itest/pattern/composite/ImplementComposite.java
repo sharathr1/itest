@@ -43,6 +43,10 @@ public class ImplementComposite {
 		structure.checkForLeaf();
 		Structure structure5 = new Structure();
 		structure.add(structure5);
-		structure5.checkForLeaf();
+		structure4.checkForLeaf();
+		
+		
+		System.out.println(structure2.toString());
+
 	}
 }
