@@ -1,7 +1,7 @@
-package com.ip.itest.pattern.java.nc;
+package com.ip.itest.java.json;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.ip.itest.pattern.java.nc.PMDocuments.PMDocumentsBuilder;
+import com.ip.itest.java.json.PMDocuments.PMDocumentsBuilder;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

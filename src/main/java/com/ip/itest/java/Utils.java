@@ -1,4 +1,4 @@
-package com.ip.itest.pattern.java;
+package com.ip.itest.java;
 
 import java.io.InputStream;
 

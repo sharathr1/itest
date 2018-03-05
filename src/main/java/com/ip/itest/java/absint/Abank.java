@@ -1,4 +1,4 @@
-package com.ip.itest.pattern.java.absint;
+package com.ip.itest.java.absint;
 
 public abstract class Abank {
 

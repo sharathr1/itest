@@ -1,4 +1,4 @@
-package com.ip.itest.pattern.java.nc;
+package com.ip.itest.java.json;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
