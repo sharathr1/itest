@@ -17,3 +17,7 @@ That's it. It worked. I did not change eclipse init script
 
  git push --set-upstream origin master
  https://github.com/couchbaselabs/try-cb-java.git
+ 
+ 
+ https://github.com/a1electronics/ecommerce
+ 
