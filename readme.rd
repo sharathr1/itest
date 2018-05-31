@@ -21,3 +21,6 @@ That's it. It worked. I did not change eclipse init script
  
  https://github.com/a1electronics/ecommerce
  
+ 
+ https://dzone.com/articles/7-techniques-for-thread-safe-classes
+ 
