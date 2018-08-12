@@ -27,7 +27,10 @@ public class JDBQueryFEParts {
 //	    String url ="siebel.TCPIP.None.None://int-sbl-trn-01.am.health.ge.com:2321/inttrn/EAIObjMgrAPI_enu";
 //	     String url = "siebel.TCPIP.None.None://int-stm-tst-01:2321/inttst/EAIObjMgrAPI_enu";
 //	    String url = "siebel.TCPIP.None.None://int-sbl-tst-04.am.health.ge.com:2321/inttst/EAIObjMgrAPI_enu";
-	    String url = "siebel.tcpip.none.none://sam8-gtw-cap-01.am.health.ge.com:2324/siebel/EAIObjMgr_enu";
+	   // String url = "siebel.tcpip.none.none://sam8-gtw-cap-01.am.health.ge.com:2324/siebel/EAIObjMgr_enu";
+	    
+	 //   String url = "siebel.tcpip.none.none://sam8-gtw-cap-01.am.health.ge.com:2324/siebel/EAIObjMgr_enu";
+
 	    // Stringsiebel.TCPIP.None.None://int-stm-tst-01.am.health.ge.com:2321/inttst/EAIObjMgrAPI_enu
 	    // url="siebel.TCPIP.None.None://int-sbl-stg-03.am.health.ge.com:2321/inttst/EAIObjMgrAPI_enu";
 	    // 212369687
@@ -52,8 +55,11 @@ public class JDBQueryFEParts {
 //	    dataBean.login("siebel.tcpip.none.none://sam8-stm-cap-01.am.health.ge.com:2324/siebel/EAIObjMgr_enu", "502549115", "Temp44you", "enu");
 //	    dataBean.login("siebel.tcpip.none.none://sam8-stm-cap-01.am.health.ge.com:2324/siebel/EAIObjMgr_enu", "502549115", "Temp44you", "enu");
 //	    dataBean.login("siebel.tcpip.none.none://sam8-stm-cap-01.am.health.ge.com:2324/ip17poc/EAIObjMgr_enu", "305015647", "New18user", "enu");
-	    dataBean.login("siebel.tcpip.none.none://sam8-gtw-cap-01.am.health.ge.com:2324/ip17poc/EAIObjMgr_enu", "502549115", "Temp44you", "enu");  
+	    //dataBean.login("siebel.tcpip.none.none://sam8-gtw-cap-01.am.health.ge.com:2324/ip17poc/EAIObjMgr_enu", "502549115", "Temp44you", "enu");  
+	  
 	    System.out.println("Login");
+	    dataBean.login("siebel.tcpip.none.none://int-sbl-dev-01.am.health.ge.com:3320/ip17poc/EAIObjMgr_enu", "502549115", "Temp44you", "enu");  
+	    System.out.println("After Login");
 
 //	    dataBean2.login(url, sso, tokenid, lang);	    dataBean2.login(url, sso, tokenid, lang);
 //	    dataBean2.login(url, sso, tokenid, lang);

@@ -1,0 +1,45 @@
+2018-07-10 18:37:54 INFO  Log4JApp:13 - Logger
+2018-07-10 18:39:54 INFO  Log4JApp:13 - Logger
+2018-07-10 18:41:23 INFO  Log4JApp:13 - Logger
+2018-07-10 18:41:52 INFO  Log4JApp:13 - Logger
+2018-07-10 18:42:32 INFO  Log4JApp:13 - Logger
+2018-07-10 18:42:32 INFO  Log4JApp:23 - getmore
+2018-07-10 18:42:46 INFO  Log4JApp:13 - Logger
+2018-07-10 18:42:46 INFO  Log4JApp:25 - getmore
+2018-07-10 18:43:09 INFO  Log4JApp:13 - Logger
+2018-07-10 18:43:09 INFO  Log4JApp:20 - getmore
+2018-07-10 18:43:19 INFO  Log4JApp:13 - Logger
+2018-07-10 18:43:19 INFO  Log4JApp:20 - getmore
+2018-07-10 18:45:39 INFO  Log4JApp:12 - Logger
+2018-07-10 18:45:39 INFO  Log4JApp:20 - getmore
+2018-07-10 18:45:56 INFO  Log4JApp:13 - Logger
+2018-07-10 18:45:56 INFO  Log4JApp:21 - getmore
+2018-07-10 18:46:15 INFO  Log4JApp:13 - Logger
+2018-07-10 18:46:15 INFO  Log4JApp:23 - getmore
+2018-07-10 18:46:49 INFO  Log4JApp:13 - Logger
+2018-07-10 18:46:49 INFO  Log4JApp:21 - getmore
+2018-07-10 18:46:58 INFO  Log4JApp:13 - Logger
+2018-07-10 18:46:58 INFO  Log4JApp:21 - getmore
+2018-07-10 18:57:15 INFO  Log4JApp:13 - Calling getmore
+2018-07-10 18:57:15 INFO  Log4JApp:21 - In getmore block
+2018-07-10 18:57:43 INFO  Log4JApp:13 - Calling getmore
+2018-07-10 18:57:43 INFO  Log4JApp:26 - In getmore block
+2018-07-10 18:57:55 INFO  Log4JApp:15 - Calling getmore
+2018-07-10 18:57:55 INFO  Log4JApp:24 - In getmore block
+2018-07-10 19:02:07 INFO  Log4JApp:17 - Calling getmore
+2018-07-10 19:02:07 INFO  Log4JApp:31 - In getmore block
+2018-07-10 19:02:35 INFO  Log4JApp:17 - Calling getmore
+2018-07-10 19:02:35 INFO  Log4JApp:31 - In getmore block
+2018-07-10 19:02:58 INFO  Log4JApp:17 - Calling getmore
+2018-07-10 19:02:58 INFO  Log4JApp:31 - In getmore block
+2018-07-10 19:02:58 INFO  Log4JApp:23 - logging  NDC in getmore
+2018-07-10 19:04:06 INFO  Log4JApp:17 - Calling getmore
+2018-07-10 19:04:06 INFO  Log4JApp:31 - In getmore block
+2018-07-10 19:04:06 INFO  Log4JApp:23 - logging  NDC in getmore
+2018-07-10 19:04:17 INFO  Log4JApp:17 - logging second NDC
+2018-07-10 19:04:17 INFO  Log4JApp:19 - Calling getmore
+2018-07-10 19:04:17 INFO  Log4JApp:33 - In getmore block
+2018-07-10 19:04:17 INFO  Log4JApp:25 - logging  NDC in getmore
+2018-07-10 19:04:31 INFO  Log4JApp:18 - Calling getmore
+2018-07-10 19:04:31 INFO  Log4JApp:32 - In getmore block
+2018-07-10 19:04:31 INFO  Log4JApp:24 - logging  NDC in getmore

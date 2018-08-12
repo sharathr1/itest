@@ -1,6 +1,7 @@
 package com.ip.itest.java.java8;
 
 public class NestedFunctions {
+	
 	static java.util.function.BiConsumer<Integer, Integer> times = (i, num) -> {
 	    i *= num;
 	    System.out.println(i);
